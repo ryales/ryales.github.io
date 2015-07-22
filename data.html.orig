@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="index.html" class="brand"> Senior Thesis Fall 2013: Rachel Yales </a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li ><a href="WorkingModel.html">Map</a></li>
+              <li class="active"><a href="data.html">Data</a></li>
+              <li><a href="analysis.html">Analysis</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Databases</li>
+              <li><a href="dlfiles/SingleSheetSlaves.xlsx">Prisoners' Data</a></li>
+              <li><a href="dlfiles/NonSlaves.xlsx">Non-Slaves' Data</a></li>
+              <li><a href="dlfiles/Locations.xlsx">Geo Database</a></li>
+			  <li><a href="dlfiles/fielddescriptions.docx">Field Descriptions</a></li>
+              <li class="nav-header">Shapefiles</li>
+              <li><a href="shapefiles/parish_1789.zip">Parishes</a></li>
+              <li><a href="shapefiles/locID.zip">Point Locations from Les Affiches Américaines</a></li>
+              <li><a href="shapefiles/property.zip">Plantation Boundaries (Plaine du Nord)</a></li>
+              <li class="nav-header">Other Sources</li>
+              <li><a target="_blank" href="http://collectably.com/#/boards/51ca063e4e96ed4c00000037">Historic Maps</a></li>
+              <li><a target="_blank" href="http://ufdc.ufl.edu/AA00000449/00004/allvolumes">Les Affiches Américaines</a></li>
+              <li><a target="_blank" href="http://rachelyales.wordpress.com/">My Blog</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>Thoughts on the Methodology</h1>
+              <p></p>
+              <p>The information that makes up each entry about the nègres marrons is quite minimal in terms of content, but it is consistent, numerous, and standardized. These properties lend themselves rather well to quantifiable analysis. This may seem a strange method for historians to promote because it implies “unfeeling” and “emotionless” statistics, in contrast to the usual view of historians as those who bring the past to life. But historians must work with what they have. And the sources that mention the actual slave participants of the Atlantic Slave Trade only rarely include rich narratives, diaries, and documents. Of course there are exceptions, but the majority of the sources are lists, inventories, manifests, and registers that provide minimal descriptions at best, at least when compared to what historians would like to know.</p>
+              <p>A major reason for this is the dehumanizing nature of slavery. Slaves were viewed as inhuman capital investments, and so the materials that historians usually have to work with are in fact unfeeling and emotionless. Therefore, the task set before those who study these documents is to reveal the human being behind the reward value and the brand, the narrative behind the ethonym or ship itinerary, or the motivation and intent behind their resistance.</p>
+              <p>To uncover this knowledge and the changing patterns — and so move towards a more complete understanding of the society and time period — historians must become translators. They have to take the dehumanizing data from their sources and turn it back into the narrative of the peoples who were removed from their homes and forced to labor in the homes and fields of foreign strangers. Databases help accomplish this. Information that may seem too daunting and unintelligible because of its repetitiveness or volume, and thus too difficult to analyze using traditional pencil-and-paper methods, is much more easily accessible and understandable with a computer. A well-designed database allows the pattern to surface from amid the abundance of Jean-Pierres, Nègres Congos, and Nègres nouveaux. It assists in forming a more knowledgeable analysis that can be shared to reduce the work and continually reexamined as scholarship changes.</p>
+              <p>The nature of the sources about the Atlantic Slave Trade has meant that many documents have been left unexamined in favor of richer, more descriptive ones. With regards to the specific subject and place of this study — marronage in Saint-Domingue — researchers of the past had to resort to tally counts or make estimations based off a limited time period that resulted in erroneous conclusions that are only now being corrected.<sup><a href="#fn1" id="ref1">1</a></sup> Undoubtedly other regions have experienced similar historiographies.</p>
+              <p>While the database described below is not complete nor is it a comprehensive examination of all nègres en marronage from Saint-Domingue, it does offer a glimpse at an incredibly interesting sub-section of the population while also showing what is possible for historians to accomplish using technology. It is by no means a dismissal of “traditional” historical scholarship, as the database would be worthless without understanding the historic context for the sources, which includes the laws supporting the prison infrastructure and the colony’s geography. Only with this background can the collected data mean anything. A database is more than a tool, because it reveals what the researcher often cannot see alone, but it is not everything. It is more like an ideal partner — someone who helps make sense of a difficult problem and then steps back, allowing all the credit to go to you.</p>
+              <p>The database created for this project is split into two components: the primary historical data from the newspaper sources and the historical geography data gleaned from Moreau de Saint-Méry and historical maps. When the two components are combined, the complete database allows for geospatial analysis of the runaways of Saint-Domingue. This section will outline the design process of the fields, the data coding, and the GIS implementation. Not wanting to be particularly technical, specific problems and interesting results will be highlighted in favor of a lengthy discussion about relational databases, queries, and programming.<sup><a href="#fn1" id="ref2">2</a></sup></p>
+              <p>A database is not ideal for every type of source material, and so the first step was to determine what type of information I had and how to best represent it. For example, those who work with runaway slave advertisements, such as Jean-Pierre La Glaunec and Douglas Chambers, have chosen to present each ad as a single text object, without any other analysis or deconstruction.<sup><a href="#fn1" id="ref3">3</a></sup> The advertisements are small narratives and often contain unstandardized information, making it challenging to decide what to code and what to dismiss as being too problematic. Ed Baptist, in his work on South Carolina runaways, has noted that ads will record height in a multitude of different ways (5’10”, between 5 and 6 feet, 62 inches, five feet and some inches), complicating what would seem to be a very simple attribute.<sup><a href="#fn1" id="ref4">4</a></sup> The prison lists that I worked with, however, consistently contained the exact same types of information and were regularly published because the jailers and printers were required to by law. </p>
+              <p>To begin with, the database had to be designed in a way so it would be tailored to the primary sources. Of course, basic data must always be collected, such as name, ethnicity, race, and gender in order to compare the data to other collections. But beyond those few basic fields, the choice is largely up to the researcher. In my case, I wanted to choose fields that would allow me to answer the research questions I had for the prison lists of Les Affiches Américaines. Because I was particularly interested in African ethnicity, punishment and its role in marronage, and spatial movement by maroons, I focused my fields on those aspects of the sources.</p>
+              <p>Beginning from Gwendolyn Midlo Hall and Paul Lachance’s fields design, I added or adapted several of my own. I made sure to include a record of whether or not the slave was nouveau, and I came up with a several fields for recording African ethnicity and creole origin. Recording the latter two as is during the data collection stage, I also wanted to be sure to have a way to standardize those entries for later analysis. And for the punishment data, I added a field for a description of chains, collars, and shackles – with another field to record whether or not there was indication of punishment. To keep track of the spatial aspect, I recorded the prison locations and arrest locations for every prison list that contained that data. I entered the locations as written in the document. It was the process of sorting out this geographic data which took the most time and effort aside from the actual data collection.</p>
+              <p>It seems a simple task to record locations and then plot them on a map, but I was unprepared for Haitian maps. Haiti’s place names were changed quite drastically after the Revolution in the late 18th, early 19th century in order to match the country’s new beginning. Cities and towns were renamed and administrative districts remapped. The colonial border had also changed significantly. In addition to this, the country of Haiti is not well-mapped. The most vigorous mapping efforts have been in the aftermath of the 2010 earthquake for humanitarian purposes. Not that this wasn’t important, but the most common commercial mapping engines in the United States, such as Google Maps, has certainly not made Haiti a priority. The open source mapping site, Open Street Map, has done a better job, but the task still remained for me to manually locate most of the locations mentioned in the prison lists.</p>
+              <p>The process of geolocating historic places is called geoparsing. It involves a lot of time spent with primary source – in my case over 100 historic maps, Moreau de Saint-Méry’s <em>Description de Saint-Domingue</em> volumes, and satellite imagery. Luckily, the internet provided all of these sources digitally. I created georeferenced shapefiles and vector files using QGIS, an open source Geographic Information Systems software. I located the historic boundaries of each parish based on my sources and puzzled out where the cantons and mountains were located, usually based off indirect references.</p>
+              <p>In addition to locating the arrest locations, I wanted to see if it was possible to geolocate even more specific places. I took a beautiful plat map of le Plaine du Cap, drawn by René Philipeau in 1786, and overlay it on top of road and satellite imagery in QGIS (a process called georeferencing). I was then able to trace the boundaries of each plantation, giving me the exact location. Though I ended up only being able to match a small number of slaves and owners in my database with the plantations from the map, I think further effort in this area would allow for great research. David Geggus has pointed out that certain African ethnicities were more likely to be on coffee plantations rather than sugar plantations, and vice versa. Others have also suggested that a comprehensive cross-referencing of plantation records, maps, and administrative documents would be the best way to obtain more detailed knowledge about Saint-Domingue.<sup><a href="#fn1" id="ref5">5</a></sup> Knowing where plantations were, what they grew, and which slaves lived there would provide a new perspective on the colony and in greater detail than ever before.</p> 
+              <p>Records are often scattered and disconnected from each other, and stitching them back together is part of the historian’s task. Mapping and databasing allow for researchers to have a way to organize and store those records and contemporary sources to make the process easier. It is my hope that databases and GIS software help historians in the future to see in greater detail and with more accuracy.</p>
+
+              <hr></hr>
+
+              <sup id="fn1"><a href="#ref1" title="Return to footnote 1 in the text.">1.</a>Jason Daniels, “Recovering the Fugitive History of Marronage in Saint Domingue, 1770–1791,” <em>The Journal of Caribbean History</em> 46.2 (2012): 124-126.</sup></br>
+              <sup id="fn1"><a href="#ref2" title="Return to footnote 2 in the text.">2.</a>For historians interested in how GIS and spatial analysis can be implemented into their research, see Anne Knowles, Ian N. Gregory, and Trevor M. Harris. For those interested in databases, refer to the work of Gwendolyn Midlo Hall, Paul Lachance, Walter Hawthorne, David Eltis, and others.</sup></br>
+              <sup id="fn1"><a href="#ref3" title="Return to footnote 3 in the text.">3.</a>See <a target="_blank" href="http://www.marronnage.info/en/">Le Glaunec and Robichaud’s website</a> or data sources of Douglas Chambers.</sup></br>
+              <sup id="fn1"><a href="#ref4" title="Return to footnote 4 in the text.">4.</a>Edward Baptist, “Runaway Slave Database project. CISER (Cornell Institute for Social and Economic Research) and the Cornell University Library’s Digital Humanities Staff” (paper presented at the Atlantic Slave Trade Database Conference, East Lansing, Michigan, November  9, 2013).</sup></br>
+              <sup id="fn1"><a href="#ref5" title="Return to footnote 5 in the text.">5.</a>M.L.E. Moreau de Saint-Méry, <em>Loix et Constitutions</em>, v. 5 (Paris: chez l’auteur, 1785), 90.</sup></br>
+              <sup id="fn1"><a href="#ref6" title="Return to footnote 6 in the text.">6.</a>Daniels, 147; David Geggus, “Sex and Ethnicity: A Reply to Paul E. Lovejoy,” <em>Journal of African History</em> 30.3 (1989), 395.</sup></br>
+
+          </div>
+          
+        </div>
+          
+
+      <hr>
+
+      <footer>
+        <p>&copy; Rachel Yales 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>

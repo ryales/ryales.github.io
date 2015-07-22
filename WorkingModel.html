@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' />
+  <![endif]-->
+
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<style>
+	
+#map-ui {
+    position: absolute;
+    top: 75px;
+    left: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+#map-ui a {
+    font: normal 13px/18px 'Helvetica Neue', Helvetica, sans-serif;
+    background: #FFF;
+    color: #3C4E5A;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #BBB;
+    border-bottom-width: 0;
+    min-width: 138px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#map-ui a:hover {
+    background: #ECF5FA;
+}
+
+#map-ui li:last-child a {
+    border-bottom-width: 1px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+
+#map-ui li:first-child a {
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+
+#map-ui a.active {
+    background: #3887BE;
+    border-color: #3887BE;
+    border-top-color: #FFF;
+    color: #FFF;
+}
+  </style>
+<ul id='map-ui'></ul>
+<div id='map'></div>
+
+<script src="javascript/mapstyles.js"></script>
+<script src="javascript/parishes.js"></script>
+<script src="javascript/streets.js"></script>
+<script src="javascript/anchorages.js"></script>
+<script src="javascript/coastalfeatures.js"></script>
+<script src="javascript/reefs.js"></script>
+<script src="javascript/cities.js"></script>
+<script src="javascript/embarcs.js"></script>
+<script src="javascript/islands.js"></script>
+<script src="javascript/property.js"></script>
+<script src="javascript/bays.js"></script>
+<script src="javascript/rivers.js"></script>
+<script src="javascript/landareas.js"></script>
+<script src="javascript/leaflet-search.js"></script>
+<script src="javascript/mapbox.js"></script>
+
+<script type='text/javascript'>
+var map = L.mapbox.map('map').setView([18.822, -72.699], 8);
+var ui = document.getElementById('map-ui');
+
+addLayer(L.mapbox.tileLayer('yacara15.map-7z6rjhlq'), 'Topographic', 1);
+addLayer(L.mapbox.tileLayer('digitaldetroit13msu.map-mki6ci3s'), 'Satellite', 2);
+
+function addLayer(layer, name, zIndex) {
+	if (zIndex === 1){
+		layer
+        	.setZIndex(zIndex)
+        	.addTo(map);}
+
+    // Create a simple layer switcher that toggles layers on and off.
+    var item = document.createElement('li');
+    var link = document.createElement('a');
+
+    link.href = '#';
+    link.innerHTML = name;
+	if (name === "Topographic"){
+		link.className = 'active';
+	}
+
+    link.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (map.hasLayer(layer)) {
+            map.removeLayer(layer);
+            this.className = '';
+        } else {
+            map.addLayer(layer);
+            this.className = 'active';
+        }
+    };
+	
+    item.appendChild(link);
+    ui.appendChild(item);
+}
+
+function onEachFeature(feature, layer) {
+    if (feature.properties) {
+        layer.bindPopup(feature.properties.name);
+    }
+};
+
+//Adds maki vector images to layer: only mountains/hills right now
+/*
+map.markerLayer.on('layeradd', function(d) {
+    var marker = d.layer,
+        feature = marker.feature;
+		
+    marker.setIcon(L.icon({
+        iconUrl: feature.properties.locCode
+    }));
+});
+
+map.markerLayer.setGeoJSON(cities);
+*/
+/*
+
+function highlightFeature(e) {
+			var layer = e.target;
+
+			layer.setStyle({
+				weight: 4,
+				fillOpacity: 0.7
+			});
+			
+			if (!L.Browser.ie && !L.Browser.opera) {
+				layer.bringToFront();
+			}
+
+		}
+
+		var geojson;
+
+		function resetHighlight(e) {
+			geojson.resetStyle(e.target);
+		}
+
+		function onEachFeature(feature, layer) {
+			layer.on({
+				mouseover: highlightFeature,
+				mouseout: resetHighlight,
+			});
+			if (feature.properties) {
+        layer.bindPopup(feature.properties.name);
+			}
+		}
+		
+*/
+
+var parishes1789 =
+		L.geoJson(parishes, {
+			style: parishStyle,
+			onEachFeature: onEachFeature,
+			}).addTo(map);
+		
+var coastalFeaturesGJSON = 
+		L.geoJson(coastalfeatures, {
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+
+var islandsGJSON = 			
+		L.geoJson(islands, {
+				pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, geojsonMarkerOptions)},
+				onEachFeature: onEachFeature,
+				});
+				
+var landAreasGJSON =
+		L.geoJson(landareas, {
+				pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, geojsonMarkerOptions)},
+				onEachFeature: onEachFeature,
+				});
+				
+var cityPointsGJSON =
+		L.geoJson(cities, {
+			pointToLayer: function (feature, latlng) {
+        	return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+			
+var embarcPointsGJSON =
+		L.geoJson(embarcs, {
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+			
+var streetLinesGJSON =
+		L.geoJson(streets, {
+			style: streetsStyle,
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+			
+var propertyBoundariesGJSON =
+		L.geoJson(property, {
+			style: propertyStyle,
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+			
+var baysGJSON =
+		L.geoJson(bays, {
+			style: bayStyle,
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			}).addTo(map);
+			
+var riversGJSON =
+		L.geoJson(rivers, {
+			style: waterStyle,
+			onEachFeature: onEachFeature,
+			});
+			
+var reefsGJSON =
+		L.geoJson(reefs, {
+			style: reefStyle,
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions)},
+			onEachFeature: onEachFeature,
+			});
+			
+var politicalBoundariesGJSON = L.layerGroup([parishes1789]);
+var populatedFeaturesGJSON = L.layerGroup([cityPointsGJSON, embarcPointsGJSON]);
+var plantationPropertyGJSON = L.layerGroup([propertyBoundariesGJSON]);
+var physicalGJSON = L.layerGroup([coastalFeaturesGJSON, islandsGJSON, landAreasGJSON]);
+var waterFeaturesGJSON = L.layerGroup([baysGJSON, riversGJSON, reefsGJSON]);
+
+var overlayMaps = {
+    "Parishes": politicalBoundariesGJSON,
+    "Populated Places": populatedFeaturesGJSON,
+	"Plantations": plantationPropertyGJSON,
+	"Physical Features": physicalGJSON,
+	"Rivers, Bays, & Reefs": waterFeaturesGJSON,
+	"Streets & Highways": streetLinesGJSON
+};
+
+L.control.layers(null,overlayMaps).addTo(map);
+
+/*
+Attempt at implementing search feature.
+var searchControl = new L.Control.Search({layer: featuresLayer, propertyName: 'name', circleLocation:false});
+
+	searchControl.on('search_locationfound', function(e) {
+		
+		e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
+
+	}).on('search_collapsed', function(e) {
+
+		featuresLayer.eachLayer(function(layer) {	//restore feature color
+			featuresLayer.resetStyle(layer);
+		});	
+	});
+	
+	map.addControl( searchControl );
+*/
+
+</script>
+</body>
+</html>
