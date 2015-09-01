@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Master's Dissertation: Rachel Yales</title>
+        <meta charset="utf-8" />
+
+        <!-- Call to CSS stylesheets -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/site.css">
+        
+        <!-- Call to JavaScript files required on load -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "frobisher.xml",
+                    dataType: "xml",
+                    success: parseXml
+                });
+            });
+
+            function parseXml(xml) {
+                $(xml).find("extract").each(function() {
+                    //$(this).find("title").text()
+                    $("#title").append($(this).find("title").text());
+                    $("#text").append($(this).find("para").text());
+
+                    /*$xml.find("place").
+                    $(xml).find("place").each(function() {
+                      var lat = $(this).attr("lat");
+                      var long = $(this).attr("long");
+
+                      mapPoint = L.marker([lat,long]).addTo(map);
+                      mapPoint
+                        .bindPopup($(this).text());
+                    });
+                    //$("#text").append($(this).find("place").text());*/
+                });
+            }
+        </script>
+
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    </head>
+    <body>
+        <!-- Bootstrap NavBar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle are grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="hakluyt-narrative-mapping.html">Hoisting Anchor: Masters Dissertation 2015</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="about.html">About</a></li>
+                        <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voyages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Martin Frobisher Voyages</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="about.html">By Rachel Yales</a></li>
+                    </ul>
+                    <!-- Search Form 
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search Placenames">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                    -->
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="about">
+            <h2>About this Project</h2>
+            
+            <p>This map was produced using the text from the three voyages of Martin Frobisher in search of the Northwest Passage, 1576-1578. Searching for China and the East Indies on behalf of England, yet unable to pass through the ice of the Hudson Straight, he instead travelled three times to a large sound of Baffin Island, which now bears his name.</p>
+
+            <p>The text used can be found on <a href="http://www.gutenberg.org/ebooks/13605">Project Gutenberg</a> and the <a href="https://archive.org/details/cihm_33128">Internet Archive</a>.</p>
+
+            <p>This site is a work in progress, and future developments will include further extracts from the Hakluyt anthologies, as well as integrating the text onto the map. A timeline function is also in progress, but historical data and time descriptions make it difficult to work with presently available tools.</p>
+
+            <p>The project files can be found on <a href="https://github.com/ryales/Hakluyt-Narrative-Mapping">Github</a>, with the data and xml documents included.</p>
+
+            <p>The secondary sources used to locate the places were <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a> and <a href="https://books.google.co.uk/books?id=HiBDAAAAcAAJ">this issue of the Royal Geographic Society</a>, which contains a detailed account of the voyages and their locations.</p>
+
+            <p>Current issues include multiple mentions of the same place names, multiple unique names for the same location and ambiguous names (i.e. Is the Yarmouth mentioned the port on the Isle of Wight or the coast of Norfolk?). The default projection of Mercator distorts the Arctic region and makes the polar latitudes of Frobisher's voyages appear inaccurate. Additionally, because of the historic nature of the text, often times there are mentions of imaginary places such as Friseland, which is often mistaken sightings of Greenland or Iceland.</p>
+
+            <p>The map has been built by <a href="http://www.ucl.ac.uk/dh">UCL Digital Humanities</a> MA/MSc student, Rachel Yales as a demonstration piece for partial fulfillment of the Dissertation aspect of the programme.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+body {
+  margin:0;
+  padding:0;
+  background: #494444;
+}
+
+#map {
+  position:absolute;
+  top:50px;
+  bottom:0;
+  width:100%;
+}
+
+#content {
+	float: right;
+}
+
+.navbar-default .navbar-header {
+	font-variant: small-caps;
+}
+
+.navbar-default {
+  	border: none;
+  	border-radius: 0;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top .navbar-inner .container .brand {
+	font-family: "Gill Sans MT", Lucida Bright, DejaVu Serif, Georgia, serif;
+}
+th {
+	text-align: left;
+	vertical-align: top;
+}
+.info {
+	padding: 6px 8px;
+	font: 14px/16px Arial, Helvetica, sans-serif;
+	background: black;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+.info h2 {
+	margin: 0 0 5px;
+	color: b;
+}
+.leaflet-container {
+	background: #fff;
+}
+
+#about {
+	color: white;
+	width: 75%;
+}
