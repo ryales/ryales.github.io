@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!-- AUTHOR: RACHEL YALES                        -->
+<!-- MASTERS DISSERTATION 2015                   -->
+<!-- SUPERVISOR: OLIVER DUKE-WILLIAMS            -->
+<!-- SCHEMA FOR HAKLUYT AMERICAN VOYAGE ACCOUNTS -->
+
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- ROOT ELEMENT -->
+    <xs:element name="extracts">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="extract" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="title">
+                  <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                      <xs:element ref="place"/>
+                      <xs:element ref="person"/>
+                      <xs:element ref="ship"/>
+                    </xs:choice>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element ref="para"/>
+              </xs:sequence>
+              <xs:attribute name="id" type="xs:string" use="required"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+
+    <!-- GLOBAL ELEMENTS -->
+    <xs:element name="para">
+      <xs:complexType mixed="true">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="person"/>
+            <xs:element ref="place"/>
+            <xs:element ref="date"/>
+            <xs:element ref="ship"/>
+            <!-- IGNORED WHEN TEXT IS OUTPUT -->
+            <xs:element name="sidenote" type="xs:string"/>
+            <xs:element name="note" type="xs:string"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="person" type="xs:string"/>
+    <!-- FOR THE FUTURE WHEN XML DOM GETS WORKED OUT -->
+        <!-- <xs:complexType  mixed="true"> -->
+        <!-- <xs:attribute name="personID" type="xs:string" use="required" /> -->
+        <!-- </xs:complexType> --> 
+    <xs:element name="date">  
+      <xs:complexType  mixed="true">
+        <xs:attribute name="date" type="xs:date"/>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="place" type="xs:string"/>  
+      <!-- FOR THE FUTURE WHEN XML DOM GETS WORKED OUT -->
+        <!-- <xs:complexType  mixed="true"> -->
+          <!-- <xs:attribute name="lat" type="xs:float"/> -->
+          <!-- <xs:attribute name="long" type="xs:float"/> -->
+          <!-- <xs:attribute name="placeID" type="xs:string" use="required" /> -->
+        <!-- </xs:complexType> -->
+    <xs:element name="ship" type="xs:string"/>
+  </xs:schema>
