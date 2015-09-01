@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Master's Dissertation: Rachel Yales</title>
+        <meta charset="utf-8" />
+
+        <!-- Call to CSS stylesheets -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" href="css/leaflet.timeline.css" />
+        <link rel="stylesheet" href="css/site.css">
+        
+        <!-- Call to JavaScript files required on load -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/loadxml.js"></script>
+        <script src="js/leaflet.min.js"></script>
+        <script src="js/leaflet.timeline.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "frobisher.xml",
+                    dataType: "xml",
+                    success: parseXml
+                });
+            });
+
+            function parseXml(xml) {
+                $(xml).find("extract").each(function() {
+                    //$(this).find("title").text()
+                    $("#title").append($(this).find("title").text());
+                    $("#text").append($(this).find("para").text());
+
+                    /*$xml.find("place").
+                    $(xml).find("place").each(function() {
+                      var lat = $(this).attr("lat");
+                      var long = $(this).attr("long");
+
+                      mapPoint = L.marker([lat,long]).addTo(map);
+                      mapPoint
+                        .bindPopup($(this).text());
+                    });
+                    //$("#text").append($(this).find("place").text());*/
+                });
+            }
+        </script>
+
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    </head>
+    <body>
+        <!-- Bootstrap NavBar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle are grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="hakluyt-narrative-mapping.html">Hoisting Anchor: Masters Dissertation 2015</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="about.html">About</a></li>
+                        <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voyages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Martin Frobisher Voyages</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="about.html">By Rachel Yales</a></li>
+                    </ul>
+                    <!-- Search Form 
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search Placenames">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                    -->
+                </div>
+            </div>
+        </nav>
+        <div id="map-content" class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="map"></div>
+            <!-- FOR WHEN XML DOM ISSUE IS FIXED -->
+            <!-- <div class="col-xs-6 col-md-5" id="content">
+                <h2>Title Here</h2>
+                <p>Article pulled from XML</p>
+            </div> -->
+            </div>
+        </div>
+
+        <script src="data/exp_frobisher3.js"></script>
+        <script src="data/exp_frobisher2.js"></script>
+        <script src="data/exp_frobisher1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:19
+        }).fitBounds([[13.3872505693,-81.3421113864],[72.7359762327,74.0615663503]]);
+        var hash = new L.Hash(map);
+        var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+        var feature_group = new L.featureGroup([]);
+        var raster_group = new L.LayerGroup([]);
+        var basemap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', { 
+            attribution: additional_attrib + 'Map tiles by &copy; <a href="http://cartodb.com/attributions">CartoDB</a> &mdash; Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        }); 
+        basemap.addTo(map);   
+        var layerOrder=new Array();
+
+        function pop_frobisher(feature, layer) {                    
+            var popupContent = '<table><tr><th scope="row">Extract:</th><td>' + ' '
+                + Autolinker.link(String(feature.properties['extract'])) 
+                + '</td></tr><tr><th scope="row">Explorer:</th><td>' + ' ' 
+                + Autolinker.link(String(feature.properties['explorer']))
+                + '</td></tr><tr><th scope="row">Author:</th><td>' + ' ' 
+                + Autolinker.link(String(feature.properties['author']))
+                + '</td></tr><tr><th scope="row">Volume:</th><td>' + ' '
+                + Autolinker.link(String(feature.properties['vol'])) 
+                + '</td></tr><tr><th scope="row">Place Name:</th><td>' + ' '
+                + Autolinker.link(String(feature.properties['place'])) 
+                + '</td></tr><tr><th scope="row">Date:</th><td>' + ' '
+                + Autolinker.link(String(feature.properties['date'])) 
+                + '</td></tr><tr><th scope="row">Wiki Link:</th><td>' + ' '
+                + Autolinker.link(String(feature.properties['wiki'])) 
+                + '</td></tr></table>';
+            layer.bindPopup(popupContent);
+        }
+
+        var frobisherIcon1 = L.icon({
+            iconUrl: 'images/sailboat_blue.png',
+            iconSize: [20, 20],
+            });
+
+        var frobisherIcon2 = L.icon({
+            iconUrl: 'images/sailboat_red.png',
+            iconSize: [20, 20],
+            });
+
+        var frobisherIcon3 = L.icon({
+            iconUrl: 'images/sailboat_green.png',
+            iconSize: [20, 20],
+            });
+
+        var exp_frobisher1JSON = new L.geoJson(exp_frobisher1,{
+            onEachFeature: pop_frobisher,
+            pointToLayer: function (feature, latlng) {  
+                return L.marker(latlng, {icon: frobisherIcon1})
+            }
+        });
+        //add comment sign to hide this layer on the map in the initial view.
+        feature_group.addLayer(exp_frobisher1JSON);
+        
+
+        var exp_frobisher2JSON = new L.geoJson(exp_frobisher2,{
+            onEachFeature: pop_frobisher,
+            pointToLayer: function (feature, latlng) {  
+                return L.marker(latlng, {icon: frobisherIcon2})
+            }
+        });
+        //add comment sign to hide this layer on the map in the initial view.
+        feature_group.addLayer(exp_frobisher2JSON);
+        
+        var exp_frobisher3JSON = new L.geoJson(exp_frobisher3,{
+            onEachFeature: pop_frobisher,
+            pointToLayer: function (feature, latlng) {  
+                return L.marker(latlng, {icon: frobisherIcon3})
+            }
+        });
+        //add comment sign to hide this layer on the map in the initial view.
+        feature_group.addLayer(exp_frobisher3JSON);
+
+        feature_group.addTo(map);
+
+   
+        L.control.layers({"Frobisher 1576": exp_frobisher1JSON,"Frobisher 1577": exp_frobisher2JSON,"Frobisher 1578": exp_frobisher3JSON}).addTo(map);
+
+        L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
+    </script>
+</body>
+</html>
